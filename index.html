@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JOD MODS | ELITE MODERATOR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --premium-gold: #FFD700;
+            --elite-blue: #00FFFF;
+            --hacker-green: #00FF41;
+            --danger-red: #FF073A;
+            --dark-bg: #0A0A0A;
+            --card-bg: rgba(30, 30, 30, 0.98);
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+            background: #000000;
+            color: white;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 15px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(0, 255, 65, 0.1) 0%, transparent 40%),
+                linear-gradient(135deg, #000000 0%, #0A0A0A 100%);
+            overflow-y: auto;
+        }
+
+        /* Mobile Optimized Container */
+        .container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px 20px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 
+                0 0 30px rgba(255, 215, 0, 0.3),
+                inset 0 0 30px rgba(0, 0, 0, 0.8);
+            margin: 10px 0;
+            min-height: auto;
+        }
+
+        /* Profile Header - Mobile Friendly */
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .profile-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--premium-gold);
+            background: linear-gradient(45deg, var(--premium-gold), var(--elite-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            box-shadow: 0 0 25px var(--premium-gold);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+            pointer-events: none;
+        }
+
+        .profile-photo .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--premium-gold), var(--elite-blue));
+            border-radius: 50%;
+        }
+
+        .profile-info {
+            text-align: center;
+        }
+
+        .moderator-name {
+            font-size: 1.6rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--premium-gold), var(--elite-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+            user-select: none;
+        }
+
+        .moderator-rank {
+            font-size: 1rem;
+            color: var(--premium-gold);
+            font-weight: 600;
+            user-select: none;
+        }
+
+        .moderator-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 10px 18px;
+            border-radius: 20px;
+            border: 1px solid var(--premium-gold);
+            margin-top: 12px;
+            font-size: 0.85rem;
+            user-select: none;
+        }
+
+        /* Password Section - Mobile Optimized */
+        .password-section {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            padding: 20px 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .password-label {
+            color: var(--premium-gold);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 600;
+            user-select: none;
+        }
+
+        .password {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--hacker-green);
+            text-shadow: 0 0 10px var(--hacker-green);
+            letter-spacing: 2px;
+            margin: 15px 0;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Timer Section */
+        .timer-section {
+            margin: 20px 0;
+        }
+
+        .timer {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 15px 20px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--elite-blue);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            font-family: 'Courier New', monospace;
+            user-select: none;
+        }
+
+        .expiry-warning {
+            color: var(--danger-red);
+            font-weight: 600;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            user-select: none;
+        }
+
+        /* Buttons - Mobile Touch Friendly */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.9), rgba(0, 0, 0, 0.9));
+            color: var(--premium-gold);
+            border: 2px solid var(--premium-gold);
+            padding: 18px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-height: 60px;
+            touch-action: manipulation;
+            user-select: none;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+            background: linear-gradient(135deg, var(--premium-gold), var(--hacker-green));
+            color: black;
+        }
+
+        .btn-copy {
+            color: var(--elite-blue);
+            border-color: var(--elite-blue);
+        }
+
+        .btn-copy:active {
+            background: linear-gradient(135deg, var(--elite-blue), var(--hacker-green));
+        }
+
+        /* Stats Grid - Mobile Layout */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .stat-card {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            padding: 15px 10px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            text-align: center;
+            user-select: none;
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+            color: var(--premium-gold);
+            margin-bottom: 8px;
+        }
+
+        .stat-number {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--hacker-green);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #cccccc;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Terminal */
+        .terminal {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: left;
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--hacker-green);
+            line-height: 1.4;
+            max-height: 150px;
+            overflow-y: auto;
+            user-select: none;
+        }
+
+        .terminal-line {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .prompt {
+            color: var(--elite-blue);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            color: #888888;
+            font-size: 0.8rem;
+            user-select: none;
+        }
+
+        .powered-by {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+            font-size: 0.8rem;
+        }
+
+        /* Redirect Overlay - Mobile Friendly */
+        .redirect-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            color: var(--hacker-green);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .redirect-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .redirect-countdown {
+            font-size: 3rem;
+            color: var(--danger-red);
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .redirect-message {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            max-width: 300px;
+        }
+
+        .redirect-btn {
+            background: transparent;
+            color: var(--elite-blue);
+            border: 2px solid var(--elite-blue);
+            padding: 12px 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        /* Security Warning */
+        .security-warning {
+            background: rgba(255, 7, 58, 0.2);
+            border: 1px solid var(--danger-red);
+            border-radius: 10px;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 0.8rem;
+            color: #ff9999;
+            text-align: center;
+        }
+
+        /* Mobile Specific Improvements */
+        @media (max-width: 380px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .profile-photo {
+                width: 90px;
+                height: 90px;
+                font-size: 2rem;
+            }
+            
+            .moderator-name {
+                font-size: 1.4rem;
+            }
+            
+            .password {
+                font-size: 1.3rem;
+                padding: 12px;
+            }
+            
+            .btn {
+                padding: 16px 15px;
+                font-size: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling for mobile */
+        .container {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Hide scrollbars but keep functionality */
+        .terminal::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .terminal::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .terminal::-webkit-scrollbar-thumb {
+            background: var(--premium-gold);
+            border-radius: 3px;
+        }
+
+        /* Ensure body scrolls properly */
+        body {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+</head>
+<body>
+    <!-- Redirect Overlay -->
+    <div class="redirect-overlay" id="redirectOverlay">
+        <div class="redirect-title">🔐 SECURITY PROTOCOL ACTIVATED</div>
+        <div class="redirect-message">
+            Session security breach detected. Redirecting to secure server...
+        </div>
+        <div class="redirect-countdown" id="redirectTimer">3</div>
+        <button class="redirect-btn" onclick="redirectNow()">
+            <i class="fas fa-shield-alt"></i> CONTINUE TO SECURE SERVER
+        </button>
+    </div>
+    
+    <div class="container">
+        <!-- Security Warning -->
+        <div class="security-warning">
+            <i class="fas fa-exclamation-triangle"></i> 
+            SECURITY NOTICE: Do not minimize or switch tabs. Session will be terminated.
+        </div>
+
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-photo">
+                <!-- Fixed profile photo -->
+                <img src="https://image.zaw-myo.workers.dev/image/6abd44b9-7d82-424a-8172-47fed8c7c7d2" alt="JOD Moderator">
+            </div>
+            <div class="profile-info">
+                <div class="moderator-name">JOD MODERATOR</div>
+                <div class="moderator-rank">ELITE FREE FIRE MODERATOR</div>
+                <div class="moderator-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    OFFICIAL ACCESS
+                </div>
+            </div>
+        </div>
+        
+        <!-- Password Section -->
+        <div class="password-section">
+            <div class="password-label">
+                <i class="fas fa-key"></i>
+                ACCESS KEY
+            </div>
+            <div class="password" id="password">INITIALIZING SYSTEM...</div>
+            
+            <div class="timer-section">
+                <div class="timer">
+                    <i class="fas fa-clock"></i>
+                    <span id="timer">03:00:00</span>
+                </div>
+            </div>
+            
+            <div class="expiry-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                EXPIRES IN 3 HOURS
+            </div>
+        </div>
+        
+        <!-- Buttons -->
+        <div class="button-group">
+            <button class="btn" onclick="generatePassword()">
+                <i class="fas fa-bolt"></i>
+                GENERATE KEY
+            </button>
+            <button class="btn btn-copy" onclick="copyPassword()">
+                <i class="fas fa-copy"></i>
+                COPY KEY
+            </button>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">USERS</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-shield-check"></i>
+                </div>
+                <div class="stat-number">100%</div>
+                <div class="stat-label">SECURE</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">SUPPORT</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-number">5.0</div>
+                <div class="stat-label">RATING</div>
+            </div>
+        </div>
+        
+        <!-- Terminal -->
+        <div class="terminal">
+            <div class="terminal-line">
+                <span class="prompt">>></span>
+                <span>INITIALIZING SECURITY PROTOCOL...</span>
+            </div>
+            <div class="terminal-line">
+                <span class="prompt">>></span>
+                <span>CONNECTING TO NETWORK...</span>
+            </div>
+            <div class="terminal-line">
+                <span class="prompt">>></span>
+                <span>ENCRYPTION: ACTIVE</span>
+            </div>
+            <div class="terminal-line">
+                <span class="prompt">>></span>
+                <span id="terminal-status">READY FOR KEY GENERATION</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div>© 2024 JOD MODS SYSTEM</div>
+            <div class="powered-by">
+                <i class="fas fa-bolt"></i>
+                FREE FIRE NETWORK
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Security Variables
+        let redirectCountdown = 3;
+        const redirectOverlay = document.getElementById('redirectOverlay');
+        let redirectInterval;
+        let pageLeft = false;
+
+        // Mobile optimized functions
+        function generatePassword() {
+            const prefix = "JODMODS";
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let password = '';
+            
+            for (let i = 0; i < 8; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            const now = new Date();
+            password = prefix + '-' + password;
+            
+            document.getElementById('password').textContent = password;
+            document.getElementById('terminal-status').textContent = `KEY GENERATED: ${password}`;
+            document.getElementById('terminal-status').style.color = '#00FF41';
+            
+            const expiryTime = new Date(now.getTime() + 3 * 60 * 60 * 1000);
+            localStorage.setItem('jodmods_password', password);
+            localStorage.setItem('jodmods_expiry', expiryTime.getTime());
+            
+            updateTimer();
+            
+            // Mobile vibration if supported
+            if (navigator.vibrate) {
+                navigator.vibrate(100);
+            }
+            
+            // Visual feedback
+            const passwordSection = document.querySelector('.password-section');
+            passwordSection.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+                passwordSection.style.transform = 'scale(1)';
+            }, 200);
+        }
+        
+        function copyPassword() {
+            const password = document.getElementById('password').textContent;
+            if (password !== 'INITIALIZING SYSTEM...' && !password.includes('EXPIRED')) {
+                console.log('Copying password:', password);
+                
+                // Modern clipboard API for mobile
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(password).then(() => {
+                        console.log('Copy successful with modern API');
+                        showCopySuccess();
+                    }).catch(err => {
+                        console.log('Modern API failed, using fallback');
+                        useFallbackCopy(password);
+                    });
+                } else {
+                    console.log('Modern API not available, using fallback');
+                    useFallbackCopy(password);
+                }
+            } else {
+                console.log('Password not ready for copy');
+            }
+        }
+
+        function useFallbackCopy(password) {
+            console.log('Using fallback copy method');
+            
+            // Create a temporary input element
+            const tempInput = document.createElement('input');
+            tempInput.value = password;
+            tempInput.style.position = 'absolute';
+            tempInput.style.left = '-1000px';
+            tempInput.style.top = '0';
+            tempInput.style.opacity = '0';
+            document.body.appendChild(tempInput);
+            
+            // Select and copy
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // For mobile devices
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    console.log('Fallback copy successful');
+                    showCopySuccess();
+                } else {
+                    console.log('Fallback copy failed');
+                    // Last resort - show alert with password
+                    alert('Copy this key: ' + password);
+                }
+            } catch (err) {
+                console.log('Fallback copy error:', err);
+                // Last resort - show alert with password
+                alert('Copy this key: ' + password);
+            }
+            
+            // Clean up
+            document.body.removeChild(tempInput);
+        }
+
+        function showCopySuccess() {
+            console.log('Showing copy success');
+            const copyBtn = document.querySelector('.btn-copy');
+            const originalText = copyBtn.innerHTML;
+            const originalBackground = copyBtn.style.background;
+            
+            copyBtn.innerHTML = '<i class="fas fa-check"></i> COPIED!';
+            copyBtn.style.background = 'linear-gradient(135deg, #00FF41, #006600)';
+            copyBtn.style.borderColor = '#00FF41';
+            
+            document.getElementById('terminal-status').textContent = 'KEY COPIED TO CLIPBOARD';
+            document.getElementById('terminal-status').style.color = '#00FFFF';
+            
+            // Mobile vibration
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+            
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.style.background = originalBackground;
+                copyBtn.style.borderColor = '';
+            }, 2000);
+        }
+        
+        function updateTimer() {
+            const expiry = localStorage.getItem('jodmods_expiry');
+            if (!expiry) {
+                document.getElementById('timer').textContent = '03:00:00';
+                return;
+            }
+            
+            const now = new Date().getTime();
+            const timeLeft = parseInt(expiry) - now;
+            
+            if (timeLeft <= 0) {
+                document.getElementById('password').textContent = 'KEY EXPIRED';
+                document.getElementById('timer').textContent = '00:00:00';
+                document.querySelector('.expiry-warning').innerHTML = 
+                    '<i class="fas fa-exclamation-triangle"></i> KEY EXPIRED';
+                document.getElementById('terminal-status').textContent = 'KEY EXPIRED - GENERATE NEW KEY';
+                document.getElementById('terminal-status').style.color = '#FF073A';
+                return;
+            }
+            
+            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            const formattedTime = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            document.getElementById('timer').textContent = formattedTime;
+            
+            if (hours === 0 && minutes < 30) {
+                document.querySelector('.timer').style.color = '#FF073A';
+            }
+        }
+        
+        function loadPassword() {
+            const savedPassword = localStorage.getItem('jodmods_password');
+            const expiry = localStorage.getItem('jodmods_expiry');
+            
+            if (savedPassword && expiry) {
+                const now = new Date().getTime();
+                if (now < parseInt(expiry)) {
+                    document.getElementById('password').textContent = savedPassword;
+                    document.getElementById('terminal-status').textContent = 'ACCESS ACTIVE - KEY VALID';
+                } else {
+                    document.getElementById('password').textContent = 'KEY EXPIRED';
+                    document.getElementById('terminal-status').textContent = 'KEY EXPIRED - GENERATE NEW KEY';
+                    document.getElementById('terminal-status').style.color = '#FF073A';
+                }
+            }
+            
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+        
+        // Enhanced Security Functions
+        function triggerSecurityRedirect() {
+            console.log('Triggering security redirect - user left page and returned');
+            redirectOverlay.style.display = 'flex';
+            redirectCountdown = 3;
+            document.getElementById('redirectTimer').textContent = redirectCountdown;
+            
+            // Clear existing intervals
+            if (redirectInterval) clearInterval(redirectInterval);
+            
+            // Start redirect countdown
+            redirectInterval = setInterval(() => {
+                redirectCountdown--;
+                document.getElementById('redirectTimer').textContent = redirectCountdown;
+                
+                if (redirectCountdown <= 0) {
+                    clearInterval(redirectInterval);
+                    redirectNow();
+                }
+            }, 1000);
+        }
+
+        function redirectNow() {
+            // YAHAN APNA LINK SHORTENER URL DALDO
+            window.location.href = "https://raimbowpower.github.io/JOD-MODS-OFFICIAL-WEBSITE-/";
+        }
+
+        function initializeSecurity() {
+            // Check if this is a returning user (page was left and came back)
+            const pageWasLeft = sessionStorage.getItem('jodmods_page_left');
+            
+            if (pageWasLeft === 'true') {
+                console.log('User returned after leaving page - triggering redirect');
+                triggerSecurityRedirect();
+            }
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded, initializing...');
+            loadPassword();
+            initializeSecurity();
+            
+            // Auto scroll to top
+            window.scrollTo(0, 0);
+            
+            // Add smooth scrolling
+            document.body.style.scrollBehavior = 'smooth';
+            
+            // Test copy functionality
+            console.log('Clipboard API available:', !!navigator.clipboard);
+            console.log('execCommand available:', !!document.execCommand);
+        });
+
+        // Fixed visibility change detection - only redirects when user actually leaves
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                console.log('Page hidden - marking for redirect');
+                sessionStorage.setItem('jodmods_page_left', 'true');
+                pageLeft = true;
+            } else {
+                // Only trigger redirect if user actually left the page
+                if (pageLeft) {
+                    console.log('Page visible again after leaving - checking security');
+                    setTimeout(() => {
+                        if (sessionStorage.getItem('jodmods_page_left') === 'true') {
+                            triggerSecurityRedirect();
+                        }
+                    }, 500);
+                }
+            }
+        });
+
+        // Handle page focus/blur events
+        window.addEventListener('blur', function() {
+            console.log('Window lost focus - marking for redirect');
+            sessionStorage.setItem('jodmods_page_left', 'true');
+            pageLeft = true;
+        });
+
+        window.addEventListener('focus', function() {
+            // Only trigger if user actually left the page
+            if (pageLeft) {
+                console.log('Window gained focus after leaving - checking security');
+                setTimeout(() => {
+                    if (sessionStorage.getItem('jodmods_page_left') === 'true') {
+                        triggerSecurityRedirect();
+                    }
+                }, 500);
+            }
+        });
+
+        // Handle beforeunload event (page refresh/close)
+        window.addEventListener('beforeunload', function() {
+            console.log('Page unloading - marking for redirect');
+            sessionStorage.setItem('jodmods_page_left', 'true');
+        });
+
+        // Prevent right-click context menu
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Prevent text selection
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Prevent drag and drop
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Ensure smooth scrolling on mobile
+        document.addEventListener('touchstart', function() {
+            // Enable smooth scrolling for touch devices
+        });
+    </script>
+</body>
+</html>
